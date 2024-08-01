@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../css/Registration.css";
 
 const UserDetails = () => {
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setUserId(e.target.value);
@@ -26,24 +28,17 @@ const UserDetails = () => {
     }
 
     axios
-      .get(`http://localhost:3001/admin/users`)
+      .get(`http://localhost:3001/admin/users/${userId}`)
       .then((response) => {
-        const user = response.data.find(
-          (user) => user.user_id === parseInt(userId, 10)
-        );
-        if (user) {
-          alert(
-            `User ID: ${user.user_id}\nRole: ${user.role}\nManager ID: ${user.managerid}\nStatus: ${user.status}\nSpecialization: ${user.specialization}`
-          );
-          setUserId("");
+        if (response.data) {
+          navigate(`/admin/users/${userId}`);
         } else {
-          alert("User not found.");
-          setUserId("");
+          setError("User not found.");
         }
       })
       .catch((error) => {
         console.error("There was an error fetching the user details!", error);
-        alert("There was an error fetching the user details.");
+        setError("There was an error fetching the user details.");
       });
   };
 

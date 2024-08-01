@@ -13,6 +13,8 @@ import CreateClient from "./components/CreateClient";
 import CreateProject from "./components/CreateProject";
 import UserDetails from "./components/UserDetails";
 import TaskDetails from "./components/TaskDetails";
+import UserDetailPage from "./components/UserDetailPage";
+
 function App() {
   return (
     <Router>
@@ -29,6 +31,7 @@ function App() {
           <Route path="create-project" element={<CreateProject />} />
           <Route path="user-details" element={<UserDetails />} />
           <Route path="monitor-task-details" element={<TaskDetails />} />
+          <Route path="users/:id" element={<UserDetailPage />} />
         </Route>
       </Routes>
     </Router>
