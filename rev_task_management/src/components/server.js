@@ -97,6 +97,16 @@ app.get("/admin/users", (req, res) => {
   res.status(200).json(users);
 });
 
+app.get("/admin/users/:id", (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = users.find((user) => user.user_id === userId);
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(404).send({ message: "User not found!" });
+  }
+});
+
 app.post("/admin/registration", (req, res) => {
   const userData = req.body;
   console.log("User data received:", userData);
