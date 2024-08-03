@@ -7,8 +7,8 @@
   border-radius: 5px;
   background-color: #f9f9f9;
   background: linear-gradient(to bottom right, #63c2da 20%, #e0d9d2 80%);
-  overflow-y: auto; /* Ensure form container is scrollable if content overflows */
-  max-height: 100%; /* Ensure the form container can grow to fill the available space */
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 label {
@@ -19,17 +19,17 @@ label {
 
 input,
 select {
-  display: block;
+  display: block !important;
   width: 80%;
   padding: 8px;
   margin-top: 5px;
   box-sizing: border-box;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   border-radius: 5%;
 }
 
 button {
-  margin-top: 15px;
+  /* margin-top: 15px !important; */
   padding: 10px 20px;
   background-color: #28a745;
   color: white;
@@ -50,4 +50,19 @@ h2 {
 
 button:hover {
   background-color: green;
+}
+input,
+select {
+  margin-left: 12% !important;
+}
+label {
+  margin-left: 35% !important;
+}
+h2 {
+  font-size: 2.4rem !important;
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+}
+.common {
+  margin: auto !important;
 }
