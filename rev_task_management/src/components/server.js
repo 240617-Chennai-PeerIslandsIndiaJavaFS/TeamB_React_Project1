@@ -8,6 +8,7 @@ const port = 3001;
 let users = [
   {
     user_id: 1,
+    username: "John",
     email: "admin@example.com",
     password: "adminpassword",
     role: "ADMIN",
@@ -17,6 +18,7 @@ let users = [
   },
   {
     user_id: 2,
+    username: "Alex",
     email: "manager@example.com",
     password: "managerpassword",
     role: "PROJECT_MANAGER",
@@ -26,6 +28,7 @@ let users = [
   },
   {
     user_id: 3,
+    username: "Alice",
     email: "member@example.com",
     password: "memberpassword",
     role: "TEAM_MEMBER",
@@ -59,18 +62,56 @@ let projects = [
 let tasks = [
   {
     task_id: 1,
-    task_name: "registration page",
+    task_name: "Registration Page",
     project_id: 1,
-    description: "Design the project architecture",
-    assigned_to: 1,
+    description:
+      "Design the project architecture. This task involves setting up the initial structure of the project including selecting the appropriate frameworks and libraries, configuring the development environment, and establishing coding standards and best practices. Additionally, it includes creating initial database schemas and ensuring that the project is scalable and maintainable in the long run.",
+    assigned_to: 3,
     status: "IN_PROGRESS",
   },
   {
     task_id: 2,
-    task_name: "login page",
+    task_name: "Login Page",
     project_id: 1,
-    description: "Implement backend API",
-    assigned_to: 2,
+    description:
+      "Implement backend API. This task requires the development of secure and efficient API endpoints to handle user authentication and authorization. It includes setting up JWT (JSON Web Tokens) for session management, implementing rate limiting to prevent abuse, and ensuring compliance with relevant security standards such as OAuth2. Furthermore, extensive testing and documentation are necessary to guarantee the reliability and robustness of the API.",
+    assigned_to: 3,
+    status: "NOT_STARTED",
+  },
+  {
+    task_id: 3,
+    task_name: "Dashboard",
+    project_id: 1,
+    description:
+      "Create the main dashboard UI. This involves designing and developing a user-friendly dashboard that provides an overview of key metrics and data. The task includes wireframing, prototyping, and implementing the dashboard using a modern frontend framework. Attention to detail is required to ensure a seamless user experience, responsive design, and accessibility compliance. Integration with backend services to fetch and display real-time data is also a critical aspect of this task.",
+    assigned_to: 3,
+    status: "IN_PROGRESS",
+  },
+  {
+    task_id: 4,
+    task_name: "Profile Page",
+    project_id: 1,
+    description:
+      "Develop the user profile page. This task entails creating a comprehensive profile page where users can view and edit their personal information, upload a profile picture, and manage their account settings. It requires implementing form validation, handling file uploads, and ensuring data privacy and security. The profile page should be intuitive and visually appealing, offering users an effortless way to manage their information.",
+    assigned_to: 3,
+    status: "NOT_STARTED",
+  },
+  {
+    task_id: 5,
+    task_name: "Settings Page",
+    project_id: 1,
+    description:
+      "Implement settings and preferences. This task includes developing a settings page where users can customize their experience. Features might include notification preferences, theme selection (light/dark mode), and other user-specific configurations. The task requires a good understanding of user experience principles to ensure that the settings are easy to find and use. Additionally, it involves backend support to save and retrieve user preferences.",
+    assigned_to: 3,
+    status: "IN_PROGRESS",
+  },
+  {
+    task_id: 6,
+    task_name: "Logout Functionality",
+    project_id: 1,
+    description:
+      "Develop logout functionality. This involves implementing a secure logout mechanism that ensures users are properly signed out and their session is terminated. It includes invalidating tokens, clearing cookies or local storage, and redirecting the user to the login page. Attention to security is crucial to prevent unauthorized access and ensure that no user data is exposed after logout. Additionally, user feedback mechanisms should be in place to confirm the successful logout.",
+    assigned_to: 3,
     status: "NOT_STARTED",
   },
 ];
@@ -275,4 +316,22 @@ app.put("/admin/updateTask/:taskid", (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
+});
+
+app.get("/admin/tasks/:userid", (req, res) => {
+  const userId = parseInt(req.params.userid, 10);
+  const userTasks = tasks.filter((task) => task.assigned_to === userId);
+  res.status(200).json(userTasks);
+});
+
+app.put("/admin/updateTaskStatus/:taskid", (req, res) => {
+  const taskId = parseInt(req.params.taskid, 10);
+  const { status } = req.body;
+  const taskIndex = tasks.findIndex((task) => task.task_id === taskId);
+  if (taskIndex === -1) {
+    res.status(404).send({ message: "Task not found!" });
+  } else {
+    tasks[taskIndex].status = status;
+    res.status(200).send({ message: "Task status updated successfully!" });
+  }
 });

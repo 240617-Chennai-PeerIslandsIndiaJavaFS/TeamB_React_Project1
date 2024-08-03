@@ -1,9 +1,9 @@
+// App.js
+
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import LoginPage from "./components/LoginPage";
-// import PasswordReset from "./components/PasswordReset";
-import "bootstrap/dist/css/bootstrap.min.css";
 import AdminPage from "./components/AdminPage";
 import CreateUser from "./components/CreateUser";
 import UpdateUser from "./components/UpdateUser";
@@ -13,7 +13,7 @@ import CreateClient from "./components/CreateClient";
 import CreateProject from "./components/CreateProject";
 import UserDetails from "./components/UserDetails";
 import TaskDetails from "./components/TaskDetails";
-import UserDetailPage from "./components/UserDetailPage";
+import TeamMemberPage from "./components/TeamMemberPage";
 
 function App() {
   return (
@@ -21,7 +21,6 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/password-reset" element={<PasswordReset />} /> */}
         <Route path="/admin" element={<AdminPage />}>
           <Route path="registration" element={<CreateUser />} />
           <Route path="update-user" element={<UpdateUser />} />
@@ -31,8 +30,13 @@ function App() {
           <Route path="create-project" element={<CreateProject />} />
           <Route path="user-details" element={<UserDetails />} />
           <Route path="monitor-task-details" element={<TaskDetails />} />
-          <Route path="users/:id" element={<UserDetailPage />} />
         </Route>
+        <Route path="/team-member" element={<TeamMemberPage />} />
+        <Route path="/team-member/task/:taskId" element={<TaskDetails />} />
+        {/* <Route
+          path="/team-member/update-task-status"
+          element={<UpdateTaskStatus />}
+        /> */}
       </Routes>
     </Router>
   );

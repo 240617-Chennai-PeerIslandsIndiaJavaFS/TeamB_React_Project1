@@ -1,6 +1,8 @@
+// LoginPage.js
+
 import React, { useState } from "react";
-import "../css/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
+import "../css/LoginPage.css";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -8,6 +10,7 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     const email = document.getElementById("exampleInputEmail1").value;
     const password = document.getElementById("exampleInputPassword1").value;
 
@@ -33,6 +36,8 @@ const LoginPage = () => {
         if (user) {
           if (user.role === "ADMIN") {
             navigate("/admin");
+          } else if (user.role === "TEAM_MEMBER") {
+            navigate("/team-member", { state: { user } });
           } else {
             setMessage("You do not have the required permissions.");
           }
