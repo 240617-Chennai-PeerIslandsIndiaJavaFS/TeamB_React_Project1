@@ -1,0 +1,54 @@
+.card {
+  height: 750px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-body .card-title {
+  margin-bottom: auto;
+}
+
+.card-body .card-text {
+  margin-bottom: auto;
+}
+.card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
+.btn-primary {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  margin-top: auto;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3 !important ;
+  transform: scale(1.1) !important;
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+  transform: translateY(-50px);
+}
+
+.modal.show .modal-dialog {
+  transform: translateY(0);
+}
+
+.taskpage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1;
+}

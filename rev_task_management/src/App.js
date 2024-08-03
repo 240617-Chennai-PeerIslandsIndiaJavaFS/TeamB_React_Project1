@@ -13,6 +13,7 @@ import UserDetails from "./components/UserDetails";
 import UserDetailPage from "./components/UserDetailPage";
 import TaskDetails from "./components/TaskDetails";
 import TeamMemberPage from "./components/TeamMemberPage";
+import TaskPage from "./components/TaskPage";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="users/:id" element={<UserDetailPage />} />
         </Route>
         <Route path="/team-member" element={<TeamMemberPage />} />
-        <Route path="/team-member/task/:taskId" element={<TaskDetails />} />
+        <Route path="/team-member/task/:taskId" element={<TaskPage />} />
         {/* <Route
           path="/team-member/update-task-status"
           element={<UpdateTaskStatus />}

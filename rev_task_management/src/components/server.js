@@ -53,7 +53,7 @@ let projects = [
     project_id: 1,
     clientid: 1,
     name: "Project Alpha",
-    desc: "Description for Project Alpha",
+    desc: "Project Alpha aims to revolutionize the client’s existing system by integrating advanced technologies and optimizing workflows. The project encompasses multiple phases, including initial assessment, design, development, testing, and deployment. Our goal is to enhance user experience, improve performance, and ensure scalability. Key features include a revamped user interface, enhanced security measures, and seamless integration with third-party services.",
     managerid: 1,
   },
 ];

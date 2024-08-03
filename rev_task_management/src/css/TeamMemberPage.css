@@ -18,10 +18,14 @@
 
 #head {
   text-align: left;
+  font-size: 30px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
 
-.mb-5 {
+.welcome {
   font-size: x-large;
+  margin-top: 50px !important;
 }
 
 .full-width-button {
@@ -35,7 +39,8 @@
   cursor: pointer !important;
   transition: background-color 0.3s ease !important;
   font-weight: bold !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 4px 6px rgba(55, 31, 172, 0.1) !important;
+  margin-bottom: 50px !important;
 }
 
 .full-width-button:hover {
