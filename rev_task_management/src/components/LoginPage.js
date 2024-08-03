@@ -1,5 +1,3 @@
-// LoginPage.js
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../css/LoginPage.css";
@@ -98,7 +96,7 @@ const LoginPage = () => {
             <Link to="/password-reset">
               <button
                 type="button"
-                className="btn loginbutton"
+                className="btn loginbutton reset"
                 style={{
                   backgroundColor: "rgb(238, 55, 10)",
                   borderColor: "green",

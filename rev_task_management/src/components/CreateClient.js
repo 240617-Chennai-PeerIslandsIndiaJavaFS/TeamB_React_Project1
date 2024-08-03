@@ -116,7 +116,7 @@ const CreateClient = () => {
         />
         <br />
 
-        <button type="button" onClick={handleClient}>
+        <button type="button" className="common" onClick={handleClient}>
           Create Client
         </button>
       </form>

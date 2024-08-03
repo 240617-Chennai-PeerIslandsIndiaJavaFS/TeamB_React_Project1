@@ -16,7 +16,7 @@ const AdminPage = () => {
           <Link to="/admin/create-client">Create Client</Link>
           <Link to="/admin/create-project">Create Project</Link>
           <Link to="/admin/user-details">Track User Details</Link>
-          <Link to="/admin/monitor-task-details">Monitor Task Detail</Link>
+          <Link to="/admin/monitor-task-details">Monitor Tasks Details</Link>
         </div>
         <Link className="btn-primary" to="/login">
           Logout

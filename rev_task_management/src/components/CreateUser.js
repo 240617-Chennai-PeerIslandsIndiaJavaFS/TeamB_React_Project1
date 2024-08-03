@@ -139,7 +139,11 @@ const CreateUser = () => {
         />
         <br />
 
-        <button type="button" onClick={validateAndSubmitForm}>
+        <button
+          type="button"
+          className="common"
+          onClick={validateAndSubmitForm}
+        >
           Create User
         </button>
       </form>

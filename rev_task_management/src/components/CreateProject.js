@@ -112,7 +112,7 @@ const CreateProject = () => {
         />
         <br />
 
-        <button type="button" onClick={handleProject}>
+        <button type="button" className="common" onClick={handleProject}>
           Create Project
         </button>
       </form>
