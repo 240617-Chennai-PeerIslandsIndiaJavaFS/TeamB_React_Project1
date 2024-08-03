@@ -1,5 +1,6 @@
-body,
-html {
+/* AdminPage.css */
+
+.admin-page-body {
   font-family: Arial, sans-serif;
   height: 100%;
   margin: 0;
