@@ -73,7 +73,9 @@ const AssignRole = () => {
         </select>
         <br />
 
-        <button type="submit">Assign Role</button>
+        <button type="submit" className="common">
+          Assign Role
+        </button>
       </form>
     </div>
   );

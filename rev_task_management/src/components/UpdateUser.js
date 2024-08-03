@@ -112,7 +112,9 @@ const UpdateUser = () => {
         />
         <br />
 
-        <button type="submit">Update User</button>
+        <button type="submit" className="common">
+          Update User
+        </button>
       </form>
     </div>
   );

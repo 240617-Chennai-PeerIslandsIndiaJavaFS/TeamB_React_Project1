@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 3001;
 
-// Sample data for users
 let users = [
   {
     user_id: 1,
@@ -76,7 +75,7 @@ let tasks = [
     description:
       "Implement backend API. This task requires the development of secure and efficient API endpoints to handle user authentication and authorization. It includes setting up JWT (JSON Web Tokens) for session management, implementing rate limiting to prevent abuse, and ensuring compliance with relevant security standards such as OAuth2. Furthermore, extensive testing and documentation are necessary to guarantee the reliability and robustness of the API.",
     assigned_to: 3,
-    status: "NOT_STARTED",
+    status: "IN_REVIEW",
   },
   {
     task_id: 3,
@@ -113,6 +112,38 @@ let tasks = [
       "Develop logout functionality. This involves implementing a secure logout mechanism that ensures users are properly signed out and their session is terminated. It includes invalidating tokens, clearing cookies or local storage, and redirecting the user to the login page. Attention to security is crucial to prevent unauthorized access and ensure that no user data is exposed after logout. Additionally, user feedback mechanisms should be in place to confirm the successful logout.",
     assigned_to: 3,
     status: "NOT_STARTED",
+  },
+  {
+    task_id: 7,
+    task_name: "Analytics",
+    project_id: 1,
+    description: "Integrate analytics tracking",
+    assigned_to: 10,
+    status: "IN_REVIEW",
+  },
+  {
+    task_id: 8,
+    task_name: "Payment Integration",
+    project_id: 1,
+    description: "Integrate payment gateway",
+    assigned_to: 11,
+    status: "TESTING",
+  },
+  {
+    task_id: 9,
+    task_name: "Chat Feature",
+    project_id: 1,
+    description: "Develop real-time chat functionality",
+    assigned_to: 12,
+    status: "BLOCKED",
+  },
+  {
+    task_id: 6,
+    task_name: "Notifications",
+    project_id: 1,
+    description: "Integrate notification system",
+    assigned_to: 6,
+    status: "COMPLETED",
   },
 ];
 

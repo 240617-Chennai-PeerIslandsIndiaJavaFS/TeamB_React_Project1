@@ -68,7 +68,9 @@ const DeactivateUser = () => {
         </select>
         <br />
 
-        <button type="submit">Deactivate User</button>
+        <button type="submit" className="common">
+          Deactivate
+        </button>
       </form>
     </div>
   );

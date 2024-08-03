@@ -56,7 +56,7 @@ const UserDetails = () => {
           required
         />
         <br />
-        <button type="button" onClick={fetchUserDetails}>
+        <button type="button" className="common" onClick={fetchUserDetails}>
           User Details
         </button>
         {error && <p style={{ color: "red" }}>{error}</p>}
