@@ -47,6 +47,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to right, #d172ee, #0072ff);
 }
 
 .container {
