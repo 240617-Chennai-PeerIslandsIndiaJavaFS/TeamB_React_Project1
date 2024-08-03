@@ -1,3 +1,15 @@
+/* LoginPage.css */
+.login-page-body {
+  background: linear-gradient(to right, #d172ee, #0072ff) !important;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .login-container {
   background: linear-gradient(to bottom right, #63c2da 20%, #e0d9d2 80%);
   background-color: rgba(255, 255, 255, 0.9);
@@ -56,9 +68,11 @@ label {
   color: red;
   font-weight: bold;
 }
+
 input {
   margin: 0 !important;
 }
+
 input {
   display: inline !important;
 }
@@ -67,10 +81,7 @@ label {
   margin-top: 0% !important;
   margin-left: -35% !important;
 }
+
 .reset {
   margin: 0%;
-}
-
-body {
-  background: linear-gradient(to right, #d172ee, #0072ff);
 }

@@ -1,16 +1,5 @@
-.product-name {
-  font-family: "Roboto Slab";
-  font-size: 10.5em;
-  font-weight: 300;
-  letter-spacing: -10px;
-}
-.description {
-  font-size: 4.5em;
-  font-family: "Roboto Slab";
-  font-weight: bold;
-  color: rgb(10, 10, 10);
-}
-body {
+/* LandingPage.css */
+.landing-page-body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
