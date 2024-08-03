@@ -1,5 +1,3 @@
-// App.js
-
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
@@ -12,6 +10,7 @@ import AssignRole from "./components/AssignRole";
 import CreateClient from "./components/CreateClient";
 import CreateProject from "./components/CreateProject";
 import UserDetails from "./components/UserDetails";
+import UserDetailPage from "./components/UserDetailPage";
 import TaskDetails from "./components/TaskDetails";
 import TeamMemberPage from "./components/TeamMemberPage";
 
@@ -30,6 +29,7 @@ function App() {
           <Route path="create-project" element={<CreateProject />} />
           <Route path="user-details" element={<UserDetails />} />
           <Route path="monitor-task-details" element={<TaskDetails />} />
+          <Route path="users/:id" element={<UserDetailPage />} />
         </Route>
         <Route path="/team-member" element={<TeamMemberPage />} />
         <Route path="/team-member/task/:taskId" element={<TaskDetails />} />

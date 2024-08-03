@@ -22,7 +22,7 @@ body {
     to bottom right,
     rgb(130, 219, 248),
     rgb(217, 130, 252)
-  );
+  ) !important;
 }
 
 .container {
