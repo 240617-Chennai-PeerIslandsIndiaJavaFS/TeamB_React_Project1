@@ -51,7 +51,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div id="container">
+    <div className="login-page-body">
       <div className="login-container">
         <h1>Welcome to Task Management</h1>
         <form id="login-form">
