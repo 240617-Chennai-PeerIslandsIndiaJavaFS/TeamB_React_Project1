@@ -59,7 +59,7 @@ const TeamMemberPage = () => {
   return (
     <Container className="tm-login">
       <Row className="mb-5">
-        <Col>
+        <Col className="welcome">
           <h1>Welcome, {user.username}!</h1>
           <p>
             Here are your tasks. Click on a task to view further options or

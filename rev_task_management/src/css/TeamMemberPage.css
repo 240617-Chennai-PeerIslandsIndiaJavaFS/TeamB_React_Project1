@@ -1,15 +1,18 @@
 .tm-login {
-  width: 100vw !important;
-  height: 100vh !important;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 96vw !important;
+  max-width: 100% !important;
+  background: linear-gradient(to right, #d172ee, #0072ff);
 }
 
 .tasks-detail {
   display: flex;
   flex-direction: column;
+  margin-left: 30px !important;
+  margin-right: 30px !important;
 }
 
 #h2 {
@@ -26,11 +29,13 @@
 .welcome {
   font-size: x-large;
   margin-top: 50px !important;
+  margin-left: 30px !important;
+  margin-right: 30px !important;
 }
 
 .full-width-button {
-  width: 100%;
-  background-color: #007bff !important;
+  width: 90%;
+  background-color: #204165 !important;
   color: white !important;
   border: none !important;
   padding: 10px 20px !important;
@@ -41,6 +46,7 @@
   font-weight: bold !important;
   box-shadow: 0 4px 6px rgba(55, 31, 172, 0.1) !important;
   margin-bottom: 50px !important;
+  margin-left: 80px !important;
 }
 
 .full-width-button:hover {
