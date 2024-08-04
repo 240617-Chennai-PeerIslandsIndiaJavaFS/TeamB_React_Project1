@@ -19,6 +19,7 @@
 .card-body .card-text {
   margin-bottom: auto;
 }
+
 .card:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
@@ -30,7 +31,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #0056b3 !important ;
+  background-color: #0056b3 !important;
   transform: scale(1.1) !important;
 }
 
@@ -52,4 +53,41 @@
 
 .container {
   flex: 1;
+}
+
+/* Additional styles for larger modals */
+.modal-lg {
+  max-width: 80%;
+}
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 80vh;
+}
+
+.modal-header {
+  background: linear-gradient(to right, #d172ee, #0072ff);
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  background-color: #f8f9fa;
+  overflow-y: auto;
+  font-size: larger;
+  margin: 30px 30px 30px 30px;
+}
+
+.modal-footer {
+  background-color: #f8f9fa;
 }

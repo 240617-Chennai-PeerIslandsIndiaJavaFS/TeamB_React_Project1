@@ -366,3 +366,65 @@ app.put("/admin/updateTaskStatus/:taskid", (req, res) => {
     res.status(200).send({ message: "Task status updated successfully!" });
   }
 });
+
+app.get("/admin/tasks/:taskid", (req, res) => {
+  const taskId = parseInt(req.params.taskid, 10);
+  const task = tasks.find((task) => task.task_id === taskId);
+  if (task) {
+    res.status(200).json(task);
+  } else {
+    res.status(404).send({ message: "Task not found!" });
+  }
+});
+
+app.get("/admin/projects/:projectid", (req, res) => {
+  const projectId = parseInt(req.params.projectid, 10);
+  const project = projects.find((project) => project.project_id === projectId);
+  if (project) {
+    res.status(200).json(project);
+  } else {
+    res.status(404).send({ message: "Project not found!" });
+  }
+});
+
+app.get("/admin/clients/:clientid", (req, res) => {
+  const clientId = parseInt(req.params.clientid, 10);
+  const client = clients.find((client) => client.client_id === clientId);
+  if (client) {
+    res.status(200).json(client);
+  } else {
+    res.status(404).send({ message: "Client not found!" });
+  }
+});
+// New API to get task details by task ID
+app.get("/admin/task/:taskid", (req, res) => {
+  const taskId = parseInt(req.params.taskid, 10);
+  const task = tasks.find((task) => task.task_id === taskId);
+  if (task) {
+    res.status(200).json(task);
+  } else {
+    res.status(404).send({ message: "Task not found!" });
+  }
+});
+
+// New API to get project details by project ID
+app.get("/admin/project/:projectid", (req, res) => {
+  const projectId = parseInt(req.params.projectid, 10);
+  const project = projects.find((project) => project.project_id === projectId);
+  if (project) {
+    res.status(200).json(project);
+  } else {
+    res.status(404).send({ message: "Project not found!" });
+  }
+});
+
+// New API to get client details by client ID
+app.get("/admin/client/:clientid", (req, res) => {
+  const clientId = parseInt(req.params.clientid, 10);
+  const client = clients.find((client) => client.client_id === clientId);
+  if (client) {
+    res.status(200).json(client);
+  } else {
+    res.status(404).send({ message: "Client not found!" });
+  }
+});
