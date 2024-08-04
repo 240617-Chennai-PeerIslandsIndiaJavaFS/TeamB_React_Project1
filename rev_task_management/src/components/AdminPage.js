@@ -10,6 +10,7 @@ const AdminPage = () => {
           <div>
             <h1>Welcome, Admin!</h1>
             <p style={{ color: "#f9f9f9" }}>Choose an action:</p>
+            <Link to="/admin/dashboard">Dashboard</Link>
             <Link to="/admin/registration">User Registration</Link>
             <Link to="/admin/update-user">Update User</Link>
             <Link to="/admin/deactivate-user">Deactivate User</Link>

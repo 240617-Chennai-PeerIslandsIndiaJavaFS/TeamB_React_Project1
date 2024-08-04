@@ -33,7 +33,7 @@ const LoginPage = () => {
 
         if (user) {
           if (user.role === "ADMIN") {
-            navigate("/admin");
+            navigate("/admin/dashboard");
           } else if (user.role === "TEAM_MEMBER") {
             navigate("/team-member", { state: { user } });
           } else {

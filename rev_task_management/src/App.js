@@ -14,6 +14,7 @@ import UserDetailPage from "./components/UserDetailPage";
 import TaskDetails from "./components/TaskDetails";
 import TeamMemberPage from "./components/TeamMemberPage";
 import TaskPage from "./components/TaskPage";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="user-details" element={<UserDetails />} />
           <Route path="monitor-task-details" element={<TaskDetails />} />
           <Route path="users/:id" element={<UserDetailPage />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
         <Route path="/team-member" element={<TeamMemberPage />} />
         <Route path="/team-member/task/:taskId" element={<TaskPage />} />
