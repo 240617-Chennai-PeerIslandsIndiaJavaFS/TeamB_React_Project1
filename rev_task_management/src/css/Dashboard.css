@@ -1,0 +1,85 @@
+/* Base styles for larger screens */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 25px;
+  padding: 20px;
+}
+
+.dashboardcard {
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  height: 100px;
+}
+
+.dashboardcard h3 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+}
+
+.dashboardcard p {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* Styles for medium screens (1025px to 1355px) */
+@media (min-width: 1025px) and (max-width: 1355px) {
+  .dashboard {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Two columns for this screen range */
+    gap: 20px; /* Adjust gap if needed */
+  }
+
+  .dashboardcard {
+    height: auto; /* Allow height to adjust based on content */
+  }
+}
+
+/* Styles for small screens */
+@media (max-width: 1024px) {
+  .dashboard {
+    height: 200px; /* Adjust height if needed */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(200px, 1fr)
+    ); /* Responsive layout for smaller screens */
+  }
+
+  .dashboardcard {
+    height: auto; /* Allow height to adjust based on content */
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(150px, 1fr)
+    ); /* Adjust for very small screens */
+    gap: 15px;
+  }
+
+  .dashboardcard {
+    padding: 15px;
+  }
+
+  .dashboardcard h3 {
+    font-size: 12px;
+  }
+
+  .dashboardcard p {
+    font-size: 16px;
+  }
+
+  .dashboardcard:first-child {
+    grid-column: span 1;
+    order: -1;
+  }
+}
