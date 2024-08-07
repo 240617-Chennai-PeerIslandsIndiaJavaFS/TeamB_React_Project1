@@ -18,6 +18,7 @@ import Dashboard from "./components/Dashboard";
 import PasswordReset from "./components/PasswordReset"
 import ProjectPage from "./components/ProjectManagerMenu";
 import ProjectMenu from "./components/ProjectMenu";
+import ProjectDetailsCard from "./components/viewprojectclientdetails";
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
         <Route path="/team-member" element={<TeamMemberPage />} />
         <Route path="/team-member/task/:taskId" element={<TaskPage />} />
         <Route path="/Project-manager-menu" element={<ProjectPage/>} />
-        <Route path="/Project-menu" element={<ProjectMenu/>} />
+        <Route path="/Project-menu" element={<ProjectMenu/>} >
+          <Route path="viewprojectclientdetails/:projectId" element={<ProjectDetailsCard />} />
+        </Route>
 
         {/* <Route
           path="/team-member/update-task-status"
