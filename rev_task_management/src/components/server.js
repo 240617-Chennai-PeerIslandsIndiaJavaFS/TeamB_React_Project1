@@ -533,28 +533,33 @@ app.post("/admin/addTeamMemberToProject", (req, res) => {
     .send({ message: "Team member added to the project successfully!" });
 });
 
-app.get("/admin/users", (req, res) => {
-  res.status(200).json(users);
-});
-app.get("/admin/projects", (req, res) => {
-  res.status(200).json(projects);
-});
 app.post("/admin/removeTeamMember", (req, res) => {
-  const { name, role, email } = req.body;
+  const { projectId, userId } = req.body;
 
-  // Find the user
-  const userIndex = users.findIndex(
-    (user) => user.name === name && user.role === role && user.email === email
-  );
-  if (userIndex === -1) {
-    return res.status(404).send({ message: "User not found!" });
+  // Find the project
+  const project = projects.find((project) => project.project_id === projectId);
+  if (!project) {
+    return res.status(404).send({ message: "Project not found!" });
   }
 
-  // Remove the user
-  users.splice(userIndex, 1);
+  // Check if the user is a team member of the project
+  const memberIndex = project.teamMembers.indexOf(userId);
+  if (memberIndex === -1) {
+    return res.status(404).send({ message: "User is not a team member of this project!" });
+  }
 
-  res.status(200).send({ message: "Team member removed successfully!" });
+  // Remove the user from the project's team members
+  project.teamMembers.splice(memberIndex, 1);
+
+  // Optionally, remove the user from the users array
+  const userIndex = users.findIndex((user) => user.user_id === userId);
+  if (userIndex !== -1) {
+    users.splice(userIndex, 1);
+  }
+
+  res.status(200).send({ message: "Team member removed from the project successfully!" });
 });
+
 app.get("/admin/teamMembers", (req, res) => {
   const teamMembers = users.filter((user) => user.role === "TEAM_MEMBER");
   res.status(200).json(teamMembers);
