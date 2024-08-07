@@ -36,9 +36,10 @@ const LoginPage = () => {
             navigate("/admin/dashboard");
           } else if (user.role === "TEAM_MEMBER") {
             navigate("/team-member", { state: { user } });
-          } else {
-            setMessage("You do not have the required permissions.");
+          } else if(user.role === "PROJECT_MANAGER") {
+            navigate("/Project-manager-menu")
           }
+            
         } else {
           setMessage("Invalid email or password.");
         }

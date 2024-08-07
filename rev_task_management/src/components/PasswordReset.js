@@ -1,107 +1,102 @@
-// import React from "react";
-// import "../css/PasswordReset.css";
-// import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "../css/PasswordResetCss.css";
 
-// const PasswordResetPage = () => {
-//   return (
-//     <div className="passwordreset">
-//       <nav className="navbar navbar-expand-lg navbar-custom">
-//         <div className="container-fluid">
-//           <a className="navbar-brand" href="#">
-//             Synergize
-//           </a>
-//           <button
-//             className="navbar-toggler"
-//             type="button"
-//             data-bs-toggle="collapse"
-//             data-bs-target="#navbarNav"
-//             aria-controls="navbarNav"
-//             aria-expanded="false"
-//             aria-label="Toggle navigation"
-//           >
-//             <span className="navbar-toggler-icon"></span>
-//           </button>
-//           <div className="collapse navbar-collapse" id="navbarNav">
-//             <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-//             <form className="d-flex" role="search">
-//               <button
-//                 className="btn btn-outline-light"
-//                 type="button"
-//                 onClick={() => window.history.back()}
-//               >
-//                 Go Back
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       </nav>
+// import logo from '../Media/logo.png';
 
-//       <div className="container-fluid">
-//         <div className="row w-100">
-//           <div className="col-md-4 d-flex justify-content-center align-items-center">
-//             <img src="/MEDIA/akshay logo.png" alt="Logo" className="logo1" />
-//           </div>
-//           <div className="col-md-8 d-flex justify-content-center align-items-center">
-//             <div className="login-container1">
-//               <h1>Welcome to Task Management</h1>
-//               <br />
-//               <form id="login-form">
-//                 <div className="mb-3">
-//                   <label htmlFor="exampleInputEmail1" className="form-label">
-//                     Email address
-//                   </label>
-//                   <input
-//                     type="email"
-//                     className="form-control2"
-//                     id="exampleInputEmail1"
-//                     aria-describedby="emailHelp"
-//                     required
-//                   />
-//                 </div>
-//                 <div className="mb-3">
-//                   <label
-//                     htmlFor="exampleInputOldPassword1"
-//                     className="form-label"
-//                   >
-//                     Old Password
-//                   </label>
-//                   <input
-//                     type="password"
-//                     className="form-control2"
-//                     id="exampleInputOldPassword1"
-//                     required
-//                   />
-//                 </div>
-//                 <div className="mb-3">
-//                   <label
-//                     htmlFor="exampleInputNewPassword1"
-//                     className="form-label"
-//                   >
-//                     New Password
-//                   </label>
-//                   <input
-//                     type="password"
-//                     className="form-control2"
-//                     id="exampleInputNewPassword1"
-//                     required
-//                   />
-//                 </div>
+const PasswordResetPage = () => {
+  const [email, setEmail] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
-//                 <div className="button-container">
-//                   <Link to="/login">
-//                     <button type="reset" className="loginbutton1">
-//                       Reset
-//                     </button>
-//                   </Link>
-//                 </div>
-//               </form>
-//               <div id="message"></div>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleOldPasswordChange = (e) => setOldPassword(e.target.value);
+  const handleNewPasswordChange = (e) => setNewPassword(e.target.value);
 
-// export default PasswordResetPage;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !oldPassword || !newPassword) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    axios
+      .put("http://localhost:3001/admin/resetPassword", { email, newPassword })
+      .then((response) => {
+        console.log("Password reset response:", response.data);
+        alert("Password updated successfully!");
+        // Redirect to login page or another page after successful reset
+        window.location.href = "/login";
+      })
+      .catch((error) => {
+        console.error("There was an error resetting the password!", error);
+        alert("There was an error resetting the password!");
+      });
+  };
+
+  return (
+    <div className="passwordreset">
+      <button className="go-back-button" onClick={() => window.history.back()}>
+        Go Back
+      </button>
+      <div className="flex-container">
+        <img src="/MEDIA/akshay logo.png" alt="Logo" className="logo1" />
+        <div className="login-container1">
+          <h1 className="h1styles">Welcome to Task Management</h1>
+          <form id="login-form" onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="exampleInputEmail1" className="form-label1">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control2"
+                id="exampleInputEmail1"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputOldPassword1" className="form-label1">
+                Old Password
+              </label>
+              <input
+                type="password"
+                className="form-control2"
+                id="exampleInputOldPassword1"
+                value={oldPassword}
+                onChange={handleOldPasswordChange}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="exampleInputNewPassword1" className="form-label1">
+                New Password
+              </label>
+              <input
+                type="password"
+                className="form-control2"
+                id="exampleInputNewPassword1"
+                value={newPassword}
+                onChange={handleNewPasswordChange}
+                required
+              />
+            </div>
+
+            <div className="button-containers">
+              <button type="submit" className="loginbutton1">
+                Reset
+              </button>
+            </div>
+          </form>
+          <div id="message"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PasswordResetPage;

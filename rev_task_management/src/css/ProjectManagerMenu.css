@@ -1,0 +1,43 @@
+.containers {
+  background: linear-gradient(to right, #d172ee, #0072ff);
+  padding: 24px 32px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.top-right-button {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.top-right-button:hover {
+  background-color: #0056b3;
+}
+
+.row {
+  align-items: center;
+  justify-content: center;
+}
+
+.card2-body {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+.card-menu{
+  height: 500px;
+  background-color: white;
+}

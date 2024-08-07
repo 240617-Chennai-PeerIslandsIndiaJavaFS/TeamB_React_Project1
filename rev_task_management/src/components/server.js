@@ -428,3 +428,22 @@ app.get("/admin/client/:clientid", (req, res) => {
     res.status(404).send({ message: "Client not found!" });
   }
 });
+app.put("/admin/resetPassword", (req, res) => {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword) {
+    return res
+      .status(400)
+      .send({ message: "Email and new password are required." });
+  }
+
+  const userIndex = users.findIndex((user) => user.email === email);
+
+  if (userIndex === -1) {
+    return res.status(404).send({ message: "User not found!" });
+  }
+
+  users[userIndex].password = newPassword;
+
+  res.status(200).send({ message: "Password updated successfully!" });
+});
