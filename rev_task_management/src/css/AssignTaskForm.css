@@ -1,0 +1,54 @@
+
+
+.assign-task-form-container {
+    font-family: 'Arial, sans-serif';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .form-container-c {
+    width: 500px;
+    height: 700px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5%;
+    background-color: #f9f9f9;
+    background: linear-gradient(to bottom right, #63c2da 20%, #e0d9d2 80%);
+    text-align: center; /* Center the content inside the container */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-label-c {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .form-input-c {
+    display: block;
+    width: 90%; /* Increased width */
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Center the input fields */
+    border-radius: 5%;
+  }
+  
+  .form-button-c {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form-title-c {
+    margin-bottom: 20px;
+  }
+  
