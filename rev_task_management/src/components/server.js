@@ -35,6 +35,36 @@ let users = [
     status: "INACTIVE",
     specialization: "Frontend",
   },
+  {
+    user_id: 4,
+    username: "Bob",
+    email: "bob@example.com",
+    password: "bobbypassword",
+    role: "TEAM_MEMBER",
+    managerid: 2,
+    status: "ACTIVE",
+    specialization: "Backend",
+  },
+  {
+    user_id: 5,
+    username: "Charlie",
+    email: "charlie@example.com",
+    password: "charliepassword",
+    role: "TEAM_MEMBER",
+    managerid: 2,
+    status: "INACTIVE",
+    specialization: "Full Stack",
+  },
+  {
+    user_id: 6,
+    username: "Diana",
+    email: "diana@example.com",
+    password: "dianapassword",
+    role: "TEAM_MEMBER",
+    managerid: 3,
+    status: "ACTIVE",
+    specialization: "DevOps",
+  },
 ];
 
 let clients = [
@@ -74,7 +104,7 @@ let tasks = [
     project_id: 1,
     description:
       "Implement backend API. This task requires the development of secure and efficient API endpoints to handle user authentication and authorization. It includes setting up JWT (JSON Web Tokens) for session management, implementing rate limiting to prevent abuse, and ensuring compliance with relevant security standards such as OAuth2. Furthermore, extensive testing and documentation are necessary to guarantee the reliability and robustness of the API.",
-    assigned_to: 3,
+    assigned_to: 2,
     status: "IN_REVIEW",
   },
   {
@@ -83,7 +113,7 @@ let tasks = [
     project_id: 1,
     description:
       "Create the main dashboard UI. This involves designing and developing a user-friendly dashboard that provides an overview of key metrics and data. The task includes wireframing, prototyping, and implementing the dashboard using a modern frontend framework. Attention to detail is required to ensure a seamless user experience, responsive design, and accessibility compliance. Integration with backend services to fetch and display real-time data is also a critical aspect of this task.",
-    assigned_to: 3,
+    assigned_to: 4,
     status: "IN_PROGRESS",
   },
   {
@@ -92,57 +122,57 @@ let tasks = [
     project_id: 1,
     description:
       "Develop the user profile page. This task entails creating a comprehensive profile page where users can view and edit their personal information, upload a profile picture, and manage their account settings. It requires implementing form validation, handling file uploads, and ensuring data privacy and security. The profile page should be intuitive and visually appealing, offering users an effortless way to manage their information.",
-    assigned_to: 3,
+    assigned_to: 5,
     status: "NOT_STARTED",
   },
   {
     task_id: 5,
     task_name: "Settings Page",
-    project_id: 1,
+    project_id: 2,
     description:
       "Implement settings and preferences. This task includes developing a settings page where users can customize their experience. Features might include notification preferences, theme selection (light/dark mode), and other user-specific configurations. The task requires a good understanding of user experience principles to ensure that the settings are easy to find and use. Additionally, it involves backend support to save and retrieve user preferences.",
-    assigned_to: 3,
+    assigned_to: 6,
     status: "IN_PROGRESS",
   },
   {
     task_id: 6,
     task_name: "Logout Functionality",
-    project_id: 1,
+    project_id: 2,
     description:
       "Develop logout functionality. This involves implementing a secure logout mechanism that ensures users are properly signed out and their session is terminated. It includes invalidating tokens, clearing cookies or local storage, and redirecting the user to the login page. Attention to security is crucial to prevent unauthorized access and ensure that no user data is exposed after logout. Additionally, user feedback mechanisms should be in place to confirm the successful logout.",
-    assigned_to: 3,
+    assigned_to: 6,
     status: "NOT_STARTED",
   },
   {
     task_id: 7,
     task_name: "Analytics",
-    project_id: 1,
+    project_id: 2,
     description: "Integrate analytics tracking",
-    assigned_to: 10,
+    assigned_to: 4,
     status: "IN_REVIEW",
   },
   {
     task_id: 8,
     task_name: "Payment Integration",
-    project_id: 1,
+    project_id: 2,
     description: "Integrate payment gateway",
-    assigned_to: 11,
+    assigned_to: 5,
     status: "TESTING",
   },
   {
     task_id: 9,
     task_name: "Chat Feature",
-    project_id: 1,
+    project_id: 2,
     description: "Develop real-time chat functionality",
-    assigned_to: 12,
+    assigned_to: 3,
     status: "BLOCKED",
   },
   {
     task_id: 6,
     task_name: "Notifications",
-    project_id: 1,
+    project_id: 2,
     description: "Integrate notification system",
-    assigned_to: 6,
+    assigned_to: 4,
     status: "COMPLETED",
   },
 ];
@@ -355,6 +385,21 @@ app.get("/admin/tasks/:userid", (req, res) => {
   res.status(200).json(userTasks);
 });
 
+app.put("/admin/tasks/:task_id", (req, res) => {
+  const { task_id } = req.params;
+  const updatedTask = req.body;
+
+  const taskIndex = tasks.findIndex(
+    (task) => task.task_id === parseInt(task_id)
+  );
+  if (taskIndex !== -1) {
+    tasks[taskIndex] = { ...tasks[taskIndex], ...updatedTask };
+    res.status(200).json({ message: "Task updated successfully" });
+  } else {
+    res.status(404).json({ message: "Task not found" });
+  }
+});
+
 app.put("/admin/updateTaskStatus/:taskid", (req, res) => {
   const taskId = parseInt(req.params.taskid, 10);
   const { status } = req.body;
@@ -445,7 +490,7 @@ app.put("/admin/resetPassword", (req, res) => {
 
   users[userIndex].password = newPassword;
 
-  res.status(200).send({ message: "Password updated successfully!" });
+  res.status(200).send({ message: "Password updated successfully!" });
 });
 app.get("/admin/users", (req, res) => {
   res.status(200).json(users);
@@ -475,15 +520,18 @@ app.post("/admin/addTeamMemberToProject", (req, res) => {
 
   // Check if the user is already a team member of the project
   if (project.teamMembers.includes(userId)) {
-    return res.status(400).send({ message: "User is already a team member of this project!" });
+    return res
+      .status(400)
+      .send({ message: "User is already a team member of this project!" });
   }
 
   // Add the user to the project's team members
   project.teamMembers.push(userId);
 
-  res.status(200).send({ message: "Team member added to the project successfully!" });
+  res
+    .status(200)
+    .send({ message: "Team member added to the project successfully!" });
 });
-
 
 app.get("/admin/users", (req, res) => {
   res.status(200).json(users);
@@ -495,7 +543,9 @@ app.post("/admin/removeTeamMember", (req, res) => {
   const { name, role, email } = req.body;
 
   // Find the user
-  const userIndex = users.findIndex((user) => user.name === name && user.role === role && user.email === email);
+  const userIndex = users.findIndex(
+    (user) => user.name === name && user.role === role && user.email === email
+  );
   if (userIndex === -1) {
     return res.status(404).send({ message: "User not found!" });
   }
@@ -506,7 +556,7 @@ app.post("/admin/removeTeamMember", (req, res) => {
   res.status(200).send({ message: "Team member removed successfully!" });
 });
 app.get("/admin/teamMembers", (req, res) => {
-  const teamMembers = users.filter(user => user.role === 'TEAM_MEMBER');
+  const teamMembers = users.filter((user) => user.role === "TEAM_MEMBER");
   res.status(200).json(teamMembers);
 });
 //new api to assign task
@@ -528,7 +578,7 @@ app.post("/admin/assignTask", (req, res) => {
   const newTask = {
     task_id: tasks.length ? tasks[tasks.length - 1].task_id + 1 : 1,
     task_name: taskName,
-    project_id: 1, 
+    project_id: 1,
     description: taskDescription,
     assigned_to: assignedTo,
     status: "NOT_STARTED",
@@ -538,4 +588,4 @@ app.post("/admin/assignTask", (req, res) => {
   tasks.push(newTask);
 
   res.status(200).send({ message: "Task assigned successfully!" });
-}); 
+});
