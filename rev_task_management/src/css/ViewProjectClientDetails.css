@@ -1,0 +1,31 @@
+.container-v {
+    margin-top: 5rem;
+    width: 800px;
+  }
+  
+.cards-v {
+    
+    max-width: 900px;
+    height: 400px;
+    margin: auto;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(to bottom right, #63c2da 20%, #e0d9d2 80%);
+    font-family: "Roboto Slab", serif;
+  }
+  
+.cards-title-v {
+    font-weight: 700; /* Bold */
+  }
+  
+.cards-text-v {
+    font-weight: 500; /* Semi-bold */
+  }
+  
+.alert {
+    margin-top: 20px;
+  }

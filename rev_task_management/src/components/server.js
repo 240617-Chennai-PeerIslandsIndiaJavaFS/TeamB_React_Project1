@@ -447,3 +447,95 @@ app.put("/admin/resetPassword", (req, res) => {
 
   res.status(200).send({ message: "Password updated successfully!" });
 });
+app.get("/admin/users", (req, res) => {
+  res.status(200).json(users);
+});
+app.get("/admin/projects", (req, res) => {
+  res.status(200).json(projects);
+});
+app.post("/admin/addTeamMemberToProject", (req, res) => {
+  const { projectId, userId } = req.body;
+
+  // Find the project
+  const project = projects.find((project) => project.project_id === projectId);
+  if (!project) {
+    return res.status(404).send({ message: "Project not found!" });
+  }
+
+  // Find the user
+  const user = users.find((user) => user.user_id === userId);
+  if (!user) {
+    return res.status(404).send({ message: "User not found!" });
+  }
+
+  // Assuming each project has a `teamMembers` array to store team member IDs
+  if (!project.teamMembers) {
+    project.teamMembers = [];
+  }
+
+  // Check if the user is already a team member of the project
+  if (project.teamMembers.includes(userId)) {
+    return res.status(400).send({ message: "User is already a team member of this project!" });
+  }
+
+  // Add the user to the project's team members
+  project.teamMembers.push(userId);
+
+  res.status(200).send({ message: "Team member added to the project successfully!" });
+});
+
+
+app.get("/admin/users", (req, res) => {
+  res.status(200).json(users);
+});
+app.get("/admin/projects", (req, res) => {
+  res.status(200).json(projects);
+});
+app.post("/admin/removeTeamMember", (req, res) => {
+  const { name, role, email } = req.body;
+
+  // Find the user
+  const userIndex = users.findIndex((user) => user.name === name && user.role === role && user.email === email);
+  if (userIndex === -1) {
+    return res.status(404).send({ message: "User not found!" });
+  }
+
+  // Remove the user
+  users.splice(userIndex, 1);
+
+  res.status(200).send({ message: "Team member removed successfully!" });
+});
+app.get("/admin/teamMembers", (req, res) => {
+  const teamMembers = users.filter(user => user.role === 'TEAM_MEMBER');
+  res.status(200).json(teamMembers);
+});
+//new api to assign task
+app.post("/admin/assignTask", (req, res) => {
+  const { taskName, assignedTo, taskDescription, taskDeadline } = req.body;
+
+  // Find the user
+  const user = users.find((user) => user.user_id === assignedTo);
+  if (!user) {
+    return res.status(404).send({ message: "User not found!" });
+  }
+
+  // Check if the user is a team member
+  if (user.role !== "TEAM_MEMBER") {
+    return res.status(400).send({ message: "User is not a team member!" });
+  }
+
+  // Create the new task
+  const newTask = {
+    task_id: tasks.length ? tasks[tasks.length - 1].task_id + 1 : 1,
+    task_name: taskName,
+    project_id: 1, 
+    description: taskDescription,
+    assigned_to: assignedTo,
+    status: "NOT_STARTED",
+    deadline: taskDeadline,
+  };
+
+  tasks.push(newTask);
+
+  res.status(200).send({ message: "Task assigned successfully!" });
+}); 
