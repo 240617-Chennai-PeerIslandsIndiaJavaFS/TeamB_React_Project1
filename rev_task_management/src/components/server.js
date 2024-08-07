@@ -55,6 +55,7 @@ let projects = [
     name: "Project Alpha",
     desc: "Project Alpha aims to revolutionize the client’s existing system by integrating advanced technologies and optimizing workflows. The project encompasses multiple phases, including initial assessment, design, development, testing, and deployment. Our goal is to enhance user experience, improve performance, and ensure scalability. Key features include a revamped user interface, enhanced security measures, and seamless integration with third-party services.",
     managerid: 1,
+    teamMembers: [3],
   },
 ];
 
@@ -377,25 +378,25 @@ app.get("/admin/tasks/:taskid", (req, res) => {
   }
 });
 
-app.get("/admin/projects/:projectid", (req, res) => {
-  const projectId = parseInt(req.params.projectid, 10);
-  const project = projects.find((project) => project.project_id === projectId);
-  if (project) {
-    res.status(200).json(project);
-  } else {
-    res.status(404).send({ message: "Project not found!" });
-  }
-});
+// app.get("/admin/projects/:projectid", (req, res) => {
+//   const projectId = parseInt(req.params.projectid, 10);
+//   const project = projects.find((project) => project.project_id === projectId);
+//   if (project) {
+//     res.status(200).json(project);
+//   } else {
+//     res.status(404).send({ message: "Project not found!" });
+//   }
+// });
 
-app.get("/admin/clients/:clientid", (req, res) => {
-  const clientId = parseInt(req.params.clientid, 10);
-  const client = clients.find((client) => client.client_id === clientId);
-  if (client) {
-    res.status(200).json(client);
-  } else {
-    res.status(404).send({ message: "Client not found!" });
-  }
-});
+// app.get("/admin/clients/:clientid", (req, res) => {
+//   const clientId = parseInt(req.params.clientid, 10);
+//   const client = clients.find((client) => client.client_id === clientId);
+//   if (client) {
+//     res.status(200).json(client);
+//   } else {
+//     res.status(404).send({ message: "Client not found!" });
+//   }
+// });
 // New API to get task details by task ID
 app.get("/admin/task/:taskid", (req, res) => {
   const taskId = parseInt(req.params.taskid, 10);
@@ -447,6 +448,8 @@ app.put("/admin/resetPassword", (req, res) => {
 
   res.status(200).send({ message: "Password updated successfully!" });
 });
+
+
 app.get("/admin/users", (req, res) => {
   res.status(200).json(users);
 });
@@ -456,33 +459,37 @@ app.get("/admin/projects", (req, res) => {
 app.post("/admin/addTeamMemberToProject", (req, res) => {
   const { projectId, userId } = req.body;
 
-  // Find the project
-  const project = projects.find((project) => project.project_id === projectId);
-  if (!project) {
-    return res.status(404).send({ message: "Project not found!" });
-  }
-
-  // Find the user
-  const user = users.find((user) => user.user_id === userId);
-  if (!user) {
-    return res.status(404).send({ message: "User not found!" });
-  }
-
-  // Assuming each project has a `teamMembers` array to store team member IDs
-  if (!project.teamMembers) {
-    project.teamMembers = [];
-  }
-
-  // Check if the user is already a team member of the project
-  if (project.teamMembers.includes(userId)) {
-    return res.status(400).send({ message: "User is already a team member of this project!" });
-  }
-
-  // Add the user to the project's team members
-  project.teamMembers.push(userId);
-
-  res.status(200).send({ message: "Team member added to the project successfully!" });
-});
+  // app.post("/admin/addTeamMemberToProject", validateIds, (req, res) => {
+  //   const { projectId, userId } = req.body;
+  
+    // Find the project
+    const project = projects.find((project) => project.project_id === projectId);
+    if (!project) {
+      return res.status(404).send({ message: "Project not found!" });
+    }
+  
+    // Find the user
+    const user = users.find((user) => user.user_id === userId);
+    if (!user) {
+      return res.status(404).send({ message: "User not found!" });
+    }
+  
+    // Initialize teamMembers if necessary
+    if (!project.teamMembers) {
+      project.teamMembers = [];
+    }
+  
+    // Check if the user is already a team member
+    if (project.teamMembers.includes(userId)) {
+      return res.status(400).send({ message: "User is already a team member of this project!" });
+    }
+  
+    // Add the user to the project's team members
+    project.teamMembers.push(userId);
+  
+    res.status(200).send({ message: "Team member added to the project successfully!" });
+  });
+  
 
 
 app.get("/admin/users", (req, res) => {
@@ -539,3 +546,12 @@ app.post("/admin/assignTask", (req, res) => {
 
   res.status(200).send({ message: "Task assigned successfully!" });
 }); 
+// API to fetch roles
+app.get("/admin/roles", (req, res) => {
+  const roles = [
+    { id: 1, value: "ADMIN", label: "Admin" },
+    { id: 2, value: "PROJECT_MANAGER", label: "Project Manager" },
+    { id: 3, value: "TEAM_MEMBER", label: "Team Member" },
+  ];
+  res.status(200).json(roles);
+});

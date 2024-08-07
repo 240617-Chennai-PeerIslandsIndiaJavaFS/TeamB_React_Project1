@@ -19,6 +19,7 @@ import PasswordReset from "./components/PasswordReset"
 import ProjectPage from "./components/ProjectManagerMenu";
 import ProjectMenu from "./components/ProjectMenu";
 import ProjectDetailsCard from "./components/viewprojectclientdetails";
+import AddTeamMember from "./components/AddTeamMemberToProject";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/Project-manager-menu" element={<ProjectPage/>} />
         <Route path="/Project-menu" element={<ProjectMenu/>} >
           <Route path="viewprojectclientdetails/:projectId" element={<ProjectDetailsCard />} />
+          <Route path="add-team-member-to-project/:projectId" element={<AddTeamMember />} />
         </Route>
 
         {/* <Route

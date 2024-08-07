@@ -1,0 +1,54 @@
+.add-team-member-container {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .form-container-a {
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5%;
+    background-color: #f9f9f9;
+    background: linear-gradient(to bottom right, #63c2da 20%, #e0d9d2 80%);
+    margin-top: -4%;
+  }
+  
+  /* .label-a {
+    display: block;
+    margin-top: 10px;
+    margin-left: 30%;
+  } */
+  
+  .input-a {
+    display: block;
+    width: 80%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    margin-left: 10%;
+    border-radius: 5%;
+  }
+  
+  .button-a {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40%;
+  }
+  
+  .button-a:hover {
+    background-color: green;
+  }
+  
+  /* .title-a {
+    margin-left: 40%;
+  } */
