@@ -20,6 +20,7 @@ import ProjectPage from "./components/ProjectManagerMenu";
 import ProjectMenu from "./components/ProjectMenu";
 import ProjectDetailsCard from "./components/viewprojectclientdetails";
 import UpdateTask from "./components/UpdateTask";
+import AddTeamMember from "./components/AddTeamMemberToProject";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             path="viewprojectclientdetails/:projectId"
             element={<ProjectDetailsCard />}
           />
+          <Route path="add-team-member-to-project/:projectId" element={<AddTeamMember />} />
           <Route path="update-task/:projectId" element={<UpdateTask />} />
         </Route>
 
