@@ -6,7 +6,7 @@ const AdminPage = () => {
   return (
     <div className="admin-page-body">
       <div className="admin-page">
-        <div className="sidebar">
+        <div className="sidebar1">
           <div>
             <h1>Welcome, Admin!</h1>
             <p style={{ color: "#f9f9f9" }}>Choose an action:</p>
@@ -20,11 +20,11 @@ const AdminPage = () => {
             <Link to="/admin/user-details">Track User Details</Link>
             <Link to="/admin/monitor-task-details">Monitor Tasks Details</Link>
           </div>
-          <Link className="btn-primary" to="/login">
+          <Link className="btn-primary1" to="/login">
             Logout
           </Link>
         </div>
-        <div className="content" id="content">
+        <div className="content1" id="content">
           <Outlet />
         </div>
       </div>
