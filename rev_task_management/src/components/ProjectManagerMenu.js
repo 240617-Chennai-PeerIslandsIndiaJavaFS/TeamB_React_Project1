@@ -11,7 +11,7 @@ const projects = [
   {
     title: "Project 1",
     image: logo1,
-    link: "#",
+    link: "/Project-menu",
   },
   {
     title: "Project 2",
