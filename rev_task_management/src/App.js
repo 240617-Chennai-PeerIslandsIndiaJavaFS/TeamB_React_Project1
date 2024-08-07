@@ -17,6 +17,7 @@ import TaskPage from "./components/TaskPage";
 import Dashboard from "./components/Dashboard";
 import PasswordReset from "./components/PasswordReset"
 import ProjectPage from "./components/ProjectManagerMenu";
+import ProjectMenu from "./components/ProjectMenu";
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
         <Route path="/team-member" element={<TeamMemberPage />} />
         <Route path="/team-member/task/:taskId" element={<TaskPage />} />
         <Route path="/Project-manager-menu" element={<ProjectPage/>} />
+        <Route path="/Project-menu" element={<ProjectMenu/>} />
+
         {/* <Route
           path="/team-member/update-task-status"
           element={<UpdateTaskStatus />}
