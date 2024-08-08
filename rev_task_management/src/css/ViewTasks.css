@@ -1,0 +1,24 @@
+.view-tasks {
+    padding: 20px;
+  }
+  
+  .task-list-v {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .task-item-v {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .task-item h4 {
+    margin: 0;
+  }
+  
+  .task-item p {
+    margin: 5px 0;
+  }
+  
