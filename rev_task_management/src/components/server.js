@@ -91,12 +91,12 @@ let projects = [
 let tasks = [
   {
     task_id: 1,
-    task_name: "Registration Page",
+    task_name: "Create Registration Page",
     project_id: 1,
     description:
       "Design the project architecture. This task involves setting up the initial structure of the project including selecting the appropriate frameworks and libraries, configuring the development environment, and establishing coding standards and best practices. Additionally, it includes creating initial database schemas and ensuring that the project is scalable and maintainable in the long run.",
     assigned_to: 3,
-    status: "IN_PROGRESS",
+    status: "IN PROGRESS",
   },
   {
     task_id: 2,
@@ -105,7 +105,7 @@ let tasks = [
     description:
       "Implement backend API. This task requires the development of secure and efficient API endpoints to handle user authentication and authorization. It includes setting up JWT (JSON Web Tokens) for session management, implementing rate limiting to prevent abuse, and ensuring compliance with relevant security standards such as OAuth2. Furthermore, extensive testing and documentation are necessary to guarantee the reliability and robustness of the API.",
     assigned_to: 2,
-    status: "IN_REVIEW",
+    status: "IN REVIEW",
   },
   {
     task_id: 3,
@@ -114,7 +114,7 @@ let tasks = [
     description:
       "Create the main dashboard UI. This involves designing and developing a user-friendly dashboard that provides an overview of key metrics and data. The task includes wireframing, prototyping, and implementing the dashboard using a modern frontend framework. Attention to detail is required to ensure a seamless user experience, responsive design, and accessibility compliance. Integration with backend services to fetch and display real-time data is also a critical aspect of this task.",
     assigned_to: 4,
-    status: "IN_PROGRESS",
+    status: "IN PROGRESS",
   },
   {
     task_id: 4,
@@ -123,7 +123,7 @@ let tasks = [
     description:
       "Develop the user profile page. This task entails creating a comprehensive profile page where users can view and edit their personal information, upload a profile picture, and manage their account settings. It requires implementing form validation, handling file uploads, and ensuring data privacy and security. The profile page should be intuitive and visually appealing, offering users an effortless way to manage their information.",
     assigned_to: 5,
-    status: "NOT_STARTED",
+    status: "TO DO",
   },
   {
     task_id: 5,
@@ -132,7 +132,7 @@ let tasks = [
     description:
       "Implement settings and preferences. This task includes developing a settings page where users can customize their experience. Features might include notification preferences, theme selection (light/dark mode), and other user-specific configurations. The task requires a good understanding of user experience principles to ensure that the settings are easy to find and use. Additionally, it involves backend support to save and retrieve user preferences.",
     assigned_to: 6,
-    status: "IN_PROGRESS",
+    status: "IN PROGRESS",
   },
   {
     task_id: 6,
@@ -141,7 +141,7 @@ let tasks = [
     description:
       "Develop logout functionality. This involves implementing a secure logout mechanism that ensures users are properly signed out and their session is terminated. It includes invalidating tokens, clearing cookies or local storage, and redirecting the user to the login page. Attention to security is crucial to prevent unauthorized access and ensure that no user data is exposed after logout. Additionally, user feedback mechanisms should be in place to confirm the successful logout.",
     assigned_to: 6,
-    status: "NOT_STARTED",
+    status: "TO DO",
   },
   {
     task_id: 7,
@@ -149,7 +149,7 @@ let tasks = [
     project_id: 2,
     description: "Integrate analytics tracking",
     assigned_to: 4,
-    status: "IN_REVIEW",
+    status: "IN REVIEW",
   },
   {
     task_id: 8,
@@ -161,7 +161,7 @@ let tasks = [
   },
   {
     task_id: 9,
-    task_name: "Chat Feature",
+    task_name: "Create Chat Feature",
     project_id: 2,
     description: "Develop real-time chat functionality",
     assigned_to: 3,
@@ -173,7 +173,52 @@ let tasks = [
     project_id: 2,
     description: "Integrate notification system",
     assigned_to: 4,
-    status: "COMPLETED",
+    status: "TO DO",
+  },
+  {
+    task_id: 11,
+    task_name: "Create FAQ Page",
+    project_id: 3,
+    description:
+      "Develop a comprehensive FAQ page. This involves gathering and organizing common questions and answers about the application. The task includes designing a user-friendly layout that categorizes questions for easy navigation. Implement search functionality to help users find relevant information quickly. Ensure that the page is responsive and accessible, providing a seamless experience across all devices.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 12,
+    task_name: "Create Help Center",
+    project_id: 3,
+    description:
+      "Build an extensive help center. This task requires creating a dedicated section where users can find detailed guides, tutorials, and troubleshooting tips. The help center should include a well-structured knowledge base, video tutorials, and a contact form for additional support. Implement analytics to track user interactions and identify the most common issues, allowing for continuous improvement.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 13,
+    task_name: "Create Feedback Form",
+    project_id: 3,
+    description:
+      "Develop a feedback form for users to submit their suggestions and report issues. This task involves designing an intuitive form with various input fields to capture detailed feedback. Ensure that the form is easy to access and use, and integrate it with the backend to store and manage the feedback data. Implement a notification system to alert the support team of new submissions.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 14,
+    task_name: "Create Terms and Conditions Page",
+    project_id: 3,
+    description:
+      "Draft and develop the terms and conditions page. This involves writing clear and concise legal text outlining the rules and regulations for using the application. The task includes ensuring that the terms are comprehensive and compliant with relevant laws and regulations. Design the page to be easily readable and accessible, with links to related documents such as the privacy policy.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 15,
+    task_name: "Create About Us Page",
+    project_id: 3,
+    description:
+      "Design and develop an engaging About Us page. This task involves creating content that tells the story of the company, its mission, values, and team members. Include high-quality images, biographies of key team members, and a timeline of significant milestones. The page should be visually appealing and reflect the brand's identity. Ensure that the layout is responsive and optimized for all devices.",
+    assigned_to: 3,
+    status: "TO DO",
   },
 ];
 
@@ -520,7 +565,7 @@ app.get("/admin/clients/:clientid", (req, res) => {
     res.status(404).send({ message: "Client not found!" });
   }
 });
-// New API to get task details by task ID
+// API to get task details by task ID
 app.get("/admin/task/:taskid", (req, res) => {
   const taskId = parseInt(req.params.taskid, 10);
   const task = tasks.find((task) => task.task_id === taskId);
@@ -531,7 +576,7 @@ app.get("/admin/task/:taskid", (req, res) => {
   }
 });
 
-// New API to get project details by project ID
+// API to get project details by project ID
 app.get("/admin/project/:projectid", (req, res) => {
   const projectId = parseInt(req.params.projectid, 10);
   const project = projects.find((project) => project.project_id === projectId);
@@ -542,7 +587,7 @@ app.get("/admin/project/:projectid", (req, res) => {
   }
 });
 
-// New API to get client details by client ID
+// API to get client details by client ID
 app.get("/admin/client/:clientid", (req, res) => {
   const clientId = parseInt(req.params.clientid, 10);
   const client = clients.find((client) => client.client_id === clientId);
@@ -552,6 +597,7 @@ app.get("/admin/client/:clientid", (req, res) => {
     res.status(404).send({ message: "Client not found!" });
   }
 });
+
 app.put("/admin/resetPassword", (req, res) => {
   const { email, newPassword } = req.body;
 
@@ -676,4 +722,17 @@ app.post("/admin/assignTask", (req, res) => {
   tasks.push(newTask);
 
   res.status(200).send({ message: "Task assigned successfully!" });
+});
+
+app.put("/admin/updateTaskStatus/:taskid", (req, res) => {
+  const taskId = parseInt(req.params.taskid, 10);
+  const { status } = req.body;
+
+  const taskIndex = tasks.findIndex((task) => task.task_id === taskId);
+  if (taskIndex === -1) {
+    res.status(404).send({ message: "Task not found!" });
+  } else {
+    tasks[taskIndex].status = status;
+    res.status(200).send({ message: "Task status updated successfully!" });
+  }
 });

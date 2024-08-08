@@ -34,7 +34,7 @@
 }
 
 .full-width-button {
-  width: 90%;
+  width: 90% !important;
   background-color: #204165 !important;
   color: white !important;
   border: none !important;

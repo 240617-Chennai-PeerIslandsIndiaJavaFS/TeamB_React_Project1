@@ -47,11 +47,11 @@ const TeamMemberPage = () => {
   }, [user, navigate]);
 
   const handleTaskClick = (taskId) => {
-    navigate(`/team-member/task/${taskId}`);
+    navigate(`/team-member/task/${taskId}`, { state: { user } });
   };
 
   const handleUpdateStatusClick = () => {
-    navigate(`/team-member/update-task-status`);
+    navigate(`/team-member/update-task-status`, { state: { user } });
   };
 
   if (!user) return null;

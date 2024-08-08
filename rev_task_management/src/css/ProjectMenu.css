@@ -1,7 +1,6 @@
-body {
+.admin-page-container {
   font-family: "'Roboto Slab', serif";
   background: linear-gradient(to right, #d172ee, #0072ff);
-  
   height: 100vh;
   margin: 0;
 }
@@ -10,7 +9,7 @@ body {
   display: flex;
   width: 100%;
   height: 100vh;
-  overflow: hidden; /* Ensure no overflow */
+  overflow: hidden;
 }
 
 .sidebar {
@@ -55,8 +54,6 @@ body {
   padding: 20px;
   box-sizing: border-box;
   background-color: #f9f9f9;
-  /* background: linear-gradient(to bottom right, #f876e0 10%, #f1caa7 90%); */
-  /* background: linear-gradient(to bottom right, rgb(130, 219, 248), rgb(217, 130, 252)); */
   background: linear-gradient(to right, #d172ee, #0072ff);
   overflow: hidden;
 }
