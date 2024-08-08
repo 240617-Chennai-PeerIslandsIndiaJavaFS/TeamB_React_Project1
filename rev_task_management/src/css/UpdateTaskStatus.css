@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+.update-task-status {
+  background: linear-gradient(to right, #d172ee, #0072ff);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.top-row {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  font-size: larger;
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.status-column {
+  flex: 0 0 200px;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px;
+  background: linear-gradient(to bottom, #63c2da 20%, #e0d9d2 80%);
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.statushead {
+  height: 85px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 30px !important;
+}
+
+.task-lists {
+  flex-grow: 1;
+  min-height: 100px;
+  min-height: 100px;
+  border: 2px solid #00ffff;
+  padding: 10px;
+  border-radius: 4px;
+  background: linear-gradient(to top right, #63c2da 20%, #e0d9d2 80%);
+}
+
+.task-items {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #00d5ff;
+  border: 2px solid #00ffff;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: move;
+}
+
+.all {
+  display: block;
+  margin-right: 0px;
+  margin-left: 0px;
+  max-width: 100vw;
+}

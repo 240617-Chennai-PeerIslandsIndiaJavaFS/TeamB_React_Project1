@@ -23,6 +23,7 @@ import UpdateTask from "./components/UpdateTask";
 import AddTeamMember from "./components/AddTeamMemberToProject";
 import RemoveTeamMember from "./components/RemoveTeamMemberFromProject";
 import AssignTaskForm from "./components/AssignTaskToTeamMember";
+import UpdateTaskStatus from "./components/UpdateTaskStatus";
 
 function App() {
   return (
@@ -45,22 +46,30 @@ function App() {
         </Route>
         <Route path="/team-member" element={<TeamMemberPage />} />
         <Route path="/team-member/task/:taskId" element={<TaskPage />} />
+        <Route
+          path="/team-member/update-task-status"
+          element={<UpdateTaskStatus />}
+        />
         <Route path="/Project-manager-menu" element={<ProjectPage />} />
         <Route path="/Project-menu" element={<ProjectMenu />}>
           <Route
             path="viewprojectclientdetails/:projectId"
             element={<ProjectDetailsCard />}
           />
-          <Route path="add-team-member-to-project/:projectId" element={<AddTeamMember />} />
-          <Route path="remove-team-member-from-project/:projectId" element={<RemoveTeamMember />} />
-          <Route path="assign-task-to-team-member/:projectId" element={<AssignTaskForm />} />
+          <Route
+            path="add-team-member-to-project/:projectId"
+            element={<AddTeamMember />}
+          />
+          <Route
+            path="remove-team-member-from-project/:projectId"
+            element={<RemoveTeamMember />}
+          />
+          <Route
+            path="assign-task-to-team-member/:projectId"
+            element={<AssignTaskForm />}
+          />
           <Route path="update-task/:projectId" element={<UpdateTask />} />
         </Route>
-
-        {/* <Route
-          path="/team-member/update-task-status"
-          element={<UpdateTaskStatus />}
-        /> */}
       </Routes>
     </Router>
   );
