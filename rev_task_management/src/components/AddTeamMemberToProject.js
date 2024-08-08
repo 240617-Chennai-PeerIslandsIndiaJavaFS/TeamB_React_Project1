@@ -4,30 +4,46 @@ import "../css/AddTeamMember.css"; // Import the new CSS file
 
 const AddTeamMember = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    role: "",
-    email: "",
-    phone: "",
-    specialization: "",
+    user_id: "",
+    team_id: "",
   });
 
-  const [roles, setRoles] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [teams, setTeams] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false); // Track form submission status
   const [submitSuccess, setSubmitSuccess] = useState(null); // Track submission success or failure
 
   useEffect(() => {
-    // Fetch roles from the server when the component mounts
-    const fetchRoles = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/admin/roles"); // Replace with your API endpoint
-        setRoles(response.data);
+        const [usersResponse, teamsResponse] = await Promise.all([
+          axios.get("http://localhost:3001/admin/users"),
+          axios.get("http://localhost:3001/admin/teams"),
+        ]);
+
+        setUsers(usersResponse.data);
+        setTeams(teamsResponse.data);
       } catch (error) {
-        console.error("Error fetching roles:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchRoles();
+    fetchData();
   }, []);
+
+  // Filter users based on manager_id, role, and status
+  const filteredUsers = users.filter(
+    (user) =>
+      user.managerid === 0 &&
+      user.role === "TEAM_MEMBER" &&
+      user.status === "ACTIVE"
+  );
+
+  // Display all team IDs
+  const allTeams = teams.map((team) => ({
+    team_id: team.team_id,
+    team_name: team.team_name,
+  }));
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,31 +54,31 @@ const AddTeamMember = () => {
   };
 
   const validateAndSubmitForm = async () => {
-    // Add your validation logic here
-    if (!formData.name || !formData.role || !formData.email) {
-      alert("Please fill in all required fields.");
+    if (!formData.user_id || !formData.team_id) {
+      alert("Please select both a user and a team.");
       return;
     }
 
-    // Set submitting status to true
     setIsSubmitting(true);
 
     try {
-      // Send POST request to the server
-      const response = await axios.post("http://localhost:3001/admin/addTeamMember", formData);
+      // Add user to the team_member table
+      await axios.post("http://localhost:3001/admin/teamMember", {
+        team_id: formData.team_id,
+        user_id: formData.user_id,
+      });
 
-      // Handle success response
-      if (response.status === 200) {
-        alert("Team member added successfully!");
-        setSubmitSuccess(true);
-        setFormData({
-          name: "",
-          role: "",
-          email: "",
-          phone: "",
-          specialization: "",
-        });
-      }
+      // Update the manager_id of the user to 1
+      await axios.put(`http://localhost:3001/admin/users/${formData.user_id}`, {
+        managerid: 1,
+      });
+
+      alert("Team member added and manager_id updated to 1 successfully!");
+      setSubmitSuccess(true);
+      setFormData({
+        user_id: "",
+        team_id: "",
+      });
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitSuccess(false);
@@ -76,74 +92,54 @@ const AddTeamMember = () => {
     <div className="add-team-member-container">
       <div id="createUserForm" className="form-container-a">
         <h2 className="title-a">Add Team Member</h2>
-        <form id="userForm">
-          <label htmlFor="name" className="label-a">
-            Name:
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="input-a"
-          />
-          <br />
-
-          <label htmlFor="role" className="label-a">
-            Role:
+        <form
+          id="userForm"
+          onSubmit={(e) => {
+            e.preventDefault();
+            validateAndSubmitForm();
+          }}
+        >
+          <label htmlFor="user_id" className="label-a">
+            User ID:
           </label>
           <select
-            id="role"
-            name="role"
-            value={formData.role}
+            id="user_id"
+            name="user_id"
+            value={formData.user_id}
             onChange={handleChange}
             required
             className="input-a"
           >
-            <option value="">Select Role</option>
-            {roles.map((role) => (
-              <option key={role.id} value={role.value}>
-                {role.label}
+            <option value="">Select User</option>
+            {filteredUsers.map((user) => (
+              <option key={user.user_id} value={user.user_id}>
+                {user.username} (ID: {user.user_id})
               </option>
             ))}
           </select>
           <br />
 
-          <label htmlFor="email" className="label-a">
-            Email:
+          <label htmlFor="team_id" className="label-a">
+            Team ID:
           </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
+          <select
+            id="team_id"
+            name="team_id"
+            value={formData.team_id}
             onChange={handleChange}
             required
             className="input-a"
-          />
-          <br />
-
-          <label htmlFor="specialization" className="label-a">
-            Specialization:
-          </label>
-          <input
-            type="text"
-            id="specialization"
-            name="specialization"
-            value={formData.specialization}
-            onChange={handleChange}
-            className="input-a"
-          />
-          <br />
-
-          <button
-            type="button"
-            onClick={validateAndSubmitForm}
-            className="button-a"
-            disabled={isSubmitting}
           >
+            <option value="">Select Team</option>
+            {allTeams.map((team) => (
+              <option key={team.team_id} value={team.team_id}>
+                {team.team_name} (ID: {team.team_id})
+              </option>
+            ))}
+          </select>
+          <br />
+
+          <button type="submit" className="button-a" disabled={isSubmitting}>
             {isSubmitting ? "Adding..." : "Add Member"}
           </button>
         </form>

@@ -51,8 +51,8 @@ let users = [
     email: "charlie@example.com",
     password: "charliepassword",
     role: "TEAM_MEMBER",
-    managerid: 2,
-    status: "INACTIVE",
+    managerid: 0,
+    status: "ACTIVE",
     specialization: "Full Stack",
   },
   {
@@ -61,7 +61,7 @@ let users = [
     email: "diana@example.com",
     password: "dianapassword",
     role: "TEAM_MEMBER",
-    managerid: 3,
+    managerid: 0,
     status: "ACTIVE",
     specialization: "DevOps",
   },
@@ -177,6 +177,15 @@ let tasks = [
   },
 ];
 
+let teams = [
+  {
+    team_id: 1,
+    team_name: "Backend Team",
+    project_id: 1,
+  },
+];
+let team_member = [];
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -193,6 +202,24 @@ const validateNumericFields = (req, res, next) => {
   }
   next();
 };
+app.get("/admin/teams", (req, res) => {
+  res.status(200).json(teams);
+});
+
+app.put("/admin/users/:user_id", (req, res) => {
+  const { user_id } = req.params;
+  const { managerid } = req.body;
+  const userIndex = users.findIndex(
+    (user) => user.user_id === parseInt(user_id)
+  );
+
+  if (userIndex !== -1) {
+    users[userIndex].managerid = managerid;
+    res.json(users[userIndex]);
+  } else {
+    res.status(404).json({ error: "User not found" });
+  }
+});
 
 // User routes
 app.get("/admin/users", (req, res) => {
@@ -208,6 +235,45 @@ app.get("/admin/users/:id", (req, res) => {
     res.status(404).send({ message: "User not found!" });
   }
 });
+app.post("/admin/teamMember", (req, res) => {
+  const teamMemberData = req.body;
+  console.log("Team member data received:", teamMemberData);
+
+  // Add to the in-memory store
+  team_member.push({
+    ...teamMemberData,
+    team_id: parseInt(teamMemberData.team_id, 10),
+    user_id: parseInt(teamMemberData.user_id, 10),
+  });
+
+  // Respond with success message
+  res.status(200).send({ message: "Team member added successfully!" });
+});
+app.get("/admin/teamMembers", (req, res) => {
+  console.log("Fetching team members...");
+  res.status(200).json(team_member);
+});
+app.delete("/admin/teamMember", (req, res) => {
+  const { team_id, user_id } = req.body;
+  console.log("Remove team member request received:", { team_id, user_id });
+
+  const initialLength = team_member.length;
+
+  // Remove the team member
+  team_member = team_member.filter(
+    (member) =>
+      !(
+        member.team_id === parseInt(team_id, 10) &&
+        member.user_id === parseInt(user_id, 10)
+      )
+  );
+
+  if (team_member.length < initialLength) {
+    res.status(200).send({ message: "Team member removed successfully!" });
+  } else {
+    res.status(404).send({ message: "Team member not found!" });
+  }
+});
 
 app.post("/admin/registration", (req, res) => {
   const userData = req.body;
@@ -220,6 +286,19 @@ app.post("/admin/registration", (req, res) => {
   });
 
   res.status(200).send({ message: "User created successfully!" });
+});
+app.put("/admin/users/:user_id", (req, res) => {
+  const userId = parseInt(req.params.user_id, 10);
+  const { manager_id } = req.body;
+
+  // Find and update the user's manager_id
+  let user = users.find((user) => user.user_id === userId);
+  if (user) {
+    user.managerid = manager_id;
+    res.status(200).send({ message: "User manager_id updated successfully!" });
+  } else {
+    res.status(404).send({ message: "User not found!" });
+  }
 });
 
 app.put("/admin/updateUser/:userid", (req, res) => {
@@ -545,7 +624,9 @@ app.post("/admin/removeTeamMember", (req, res) => {
   // Check if the user is a team member of the project
   const memberIndex = project.teamMembers.indexOf(userId);
   if (memberIndex === -1) {
-    return res.status(404).send({ message: "User is not a team member of this project!" });
+    return res
+      .status(404)
+      .send({ message: "User is not a team member of this project!" });
   }
 
   // Remove the user from the project's team members
@@ -557,7 +638,9 @@ app.post("/admin/removeTeamMember", (req, res) => {
     users.splice(userIndex, 1);
   }
 
-  res.status(200).send({ message: "Team member removed from the project successfully!" });
+  res
+    .status(200)
+    .send({ message: "Team member removed from the project successfully!" });
 });
 
 app.get("/admin/teamMembers", (req, res) => {
