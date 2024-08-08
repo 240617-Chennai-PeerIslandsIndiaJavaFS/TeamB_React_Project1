@@ -86,6 +86,13 @@ let projects = [
     desc: "Project Alpha aims to revolutionize the client’s existing system by integrating advanced technologies and optimizing workflows. The project encompasses multiple phases, including initial assessment, design, development, testing, and deployment. Our goal is to enhance user experience, improve performance, and ensure scalability. Key features include a revamped user interface, enhanced security measures, and seamless integration with third-party services.",
     managerid: 1,
   },
+  {
+    project_id: 2,
+    clientid: 1,
+    name: "Project Beta",
+    desc: "Project Beta is focused on developing a new software platform to support the client’s growing needs in the digital marketplace. The project will involve thorough market research, user requirement analysis, agile development, and continuous integration and deployment. Key objectives include creating a robust backend infrastructure, implementing machine learning algorithms for predictive analytics, and ensuring high availability and fault tolerance.",
+    managerid: 2,
+  },
 ];
 
 let tasks = [
@@ -215,6 +222,51 @@ let tasks = [
     task_id: 15,
     task_name: "Create About Us Page",
     project_id: 3,
+    description:
+      "Design and develop an engaging About Us page. This task involves creating content that tells the story of the company, its mission, values, and team members. Include high-quality images, biographies of key team members, and a timeline of significant milestones. The page should be visually appealing and reflect the brand's identity. Ensure that the layout is responsive and optimized for all devices.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 11,
+    task_name: "Create FAQ Page",
+    project_id: 2,
+    description:
+      "Develop a comprehensive FAQ page. This involves gathering and organizing common questions and answers about the application. The task includes designing a user-friendly layout that categorizes questions for easy navigation. Implement search functionality to help users find relevant information quickly. Ensure that the page is responsive and accessible, providing a seamless experience across all devices.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 12,
+    task_name: "Create Help Center",
+    project_id: 2,
+    description:
+      "Build an extensive help center. This task requires creating a dedicated section where users can find detailed guides, tutorials, and troubleshooting tips. The help center should include a well-structured knowledge base, video tutorials, and a contact form for additional support. Implement analytics to track user interactions and identify the most common issues, allowing for continuous improvement.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 13,
+    task_name: "Create Feedback Form",
+    project_id: 2,
+    description:
+      "Develop a feedback form for users to submit their suggestions and report issues. This task involves designing an intuitive form with various input fields to capture detailed feedback. Ensure that the form is easy to access and use, and integrate it with the backend to store and manage the feedback data. Implement a notification system to alert the support team of new submissions.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 14,
+    task_name: "Create Terms and Conditions Page",
+    project_id: 2,
+    description:
+      "Draft and develop the terms and conditions page. This involves writing clear and concise legal text outlining the rules and regulations for using the application. The task includes ensuring that the terms are comprehensive and compliant with relevant laws and regulations. Design the page to be easily readable and accessible, with links to related documents such as the privacy policy.",
+    assigned_to: 3,
+    status: "TO DO",
+  },
+  {
+    task_id: 15,
+    task_name: "Create About Us Page",
+    project_id: 2,
     description:
       "Design and develop an engaging About Us page. This task involves creating content that tells the story of the company, its mission, values, and team members. Include high-quality images, biographies of key team members, and a timeline of significant milestones. The page should be visually appealing and reflect the brand's identity. Ensure that the layout is responsive and optimized for all devices.",
     assigned_to: 3,
