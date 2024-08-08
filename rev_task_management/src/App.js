@@ -24,6 +24,7 @@ import AddTeamMember from "./components/AddTeamMemberToProject";
 import RemoveTeamMember from "./components/RemoveTeamMemberFromProject";
 import AssignTaskForm from "./components/AssignTaskToTeamMember";
 import UpdateTaskStatus from "./components/UpdateTaskStatus";
+import RemoveTask from "./components/RemoveTask";
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
             element={<AssignTaskForm />}
           />
           <Route path="update-task/:projectId" element={<UpdateTask />} />
+          <Route path="delete-task" element={<RemoveTask />} />
         </Route>
       </Routes>
     </Router>
